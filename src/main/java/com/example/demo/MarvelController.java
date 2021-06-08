@@ -19,21 +19,21 @@ public class MarvelController {
         marvelMovies.put(honey.getId(), honey);
 
         MarvelPojo honeyLove = new MarvelPojo();
-        honeyLove.setId("1");
+        honeyLove.setId("2");
         honeyLove.setName("Avenger");
         honeyLove.setSequalNumber("Age of ultron");
-        marvelMovies.put(honey.getId(), honeyLove);
+        marvelMovies.put(honeyLove.getId(), honeyLove);
 
         MarvelPojo honeyLoveAgain = new MarvelPojo();
-        honeyLoveAgain.setId("1");
+        honeyLoveAgain.setId("3");
         honeyLoveAgain.setName("Avenger");
         honeyLoveAgain.setSequalNumber("Infinity war");
-        marvelMovies.put(honey.getId(), honeyLoveAgain);
+        marvelMovies.put(honeyLoveAgain.getId(), honeyLoveAgain);
     }
 
     @RequestMapping(value = "/movieList")
     public ResponseEntity<Object> getMarvelList() {
-        return new ResponseEntity<>(marvelMovies.values(), HttpStatus.OK);
+        return new ResponseEntity<>(marvelMovies, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/addNew", method = RequestMethod.POST)
