@@ -1,15 +1,21 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pojo.MarvelPojo;
+import service.MarvelMovieService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 public class MarvelController {
+
+    @Autowired
+    MarvelMovieService marvelMovieService;
+
     private static Map<String, MarvelPojo> marvelMovies = new HashMap<>();
     static {
         MarvelPojo honey = new MarvelPojo();
@@ -33,13 +39,16 @@ public class MarvelController {
 
     @RequestMapping(value = "/movieList")
     public ResponseEntity<Object> getMarvelList() {
-        return new ResponseEntity<>(marvelMovies, HttpStatus.OK);
+
+        return new ResponseEntity<>(marvelMovieService.getAllMovies(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/addNew", method = RequestMethod.POST)
     public ResponseEntity<Object> enterNewMovie(@RequestBody MarvelPojo product) {
         marvelMovies.put(product.getId(), product);
-        return new ResponseEntity<>("Movie added in list successfully", HttpStatus.CREATED);
+        String updateMovie = marvelMovieService.saveCustomer(product);
+
+        return new ResponseEntity<>(updateMovie!=null? updateMovie: null, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/updateMovie/{id}", method = RequestMethod.PUT)
@@ -53,6 +62,7 @@ public class MarvelController {
     @RequestMapping(value = "/deleteMovie/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable("id") String id) {
         marvelMovies.remove(id);
-        return new ResponseEntity<>("Movie is deleted successsfully", HttpStatus.OK);
+        boolean deleted = marvelMovieService.deleteMovie(Long.valueOf(id));
+        return new ResponseEntity<>(String.valueOf(deleted), HttpStatus.OK);
     }
 }
