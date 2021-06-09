@@ -1,11 +1,13 @@
-package com.example.demo;
+package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pojo.MarvelPojo;
-import service.MarvelMovieService;
+import com.example.pojo.MarvelPojo;
+import com.example.service.MarvelMovieService;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,11 +1,11 @@
-package service.impl;
+package com.example.service.impl;
 
-import dao_repo.CustomRepository;
-import entity.MarvelMovies;
+import com.example.dao_repo.CustomRepository;
+import com.example.entity.MarvelMovies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pojo.MarvelPojo;
-import service.MarvelMovieService;
+import com.example.pojo.MarvelPojo;
+import com.example.service.MarvelMovieService;
 
 import java.util.ArrayList;
 import java.util.List;

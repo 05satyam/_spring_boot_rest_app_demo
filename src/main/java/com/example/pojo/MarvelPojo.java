@@ -1,4 +1,4 @@
-package pojo;
+package com.example.pojo;
 
 import lombok.Getter;
 import lombok.Setter;

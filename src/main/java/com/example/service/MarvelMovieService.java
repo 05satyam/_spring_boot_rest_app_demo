@@ -1,7 +1,6 @@
-package service;
+package com.example.service;
 
-import entity.MarvelMovies;
-import pojo.MarvelPojo;
+import com.example.pojo.MarvelPojo;
 
 import java.util.List;
 
